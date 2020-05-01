@@ -1,3 +1,8 @@
+/*
+* This program is used to test sorting functions on images
+* Author: Richard Purcell May 01 2020.
+*/
+
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/highgui.hpp>
