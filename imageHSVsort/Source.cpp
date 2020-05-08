@@ -17,6 +17,8 @@ Mat image, imageHSV, hue, sat, val, outHue, outVal, outSat, visualizeHue;
 vector<int> hueCount(256, 0);
 
 int insertionSort();
+int mergeSort();
+int merge(Mat in, int p, int q, int r);
 void fakeHistorgram();
 
 
@@ -46,7 +48,8 @@ int main( int argc, char** argv) {
 	sat = hsvChannels[1].reshape(1, 1);
 	val = hsvChannels[2].reshape(1, 1);
 
-	insertionSort();
+	//insertionSort();
+	mergeSort();
 
 	for (int x : hueCount)
 		cout << x << " ";
@@ -66,7 +69,7 @@ int main( int argc, char** argv) {
 
 	cvtColor(out, out, COLOR_HSV2BGR);
 
-	fakeHistorgram();
+	//fakeHistorgram();
 
 	imshow("out", out);
 	imshow("Image", image);
@@ -114,6 +117,45 @@ int insertionSort() {
 	cout << "|" << endl;
 
 	return 0;
+}
+
+/*
+ * Name:		mergeSort
+ * Purpose:		sort an input array
+ * Arguments:	an array in, 
+				the starting and ending indices of the input array p, r
+ * Modifies:	TBD
+ * Output:		0 on success
+ */
+int mergeSort(Mat in, int p, int r) {
+	int q;
+
+	if (p >= r)
+		return;
+	else
+	{
+		q = floor((p + r) / 2);
+		mergeSort(in, p, q);
+		mergeSort(in, q + 1, r);
+		merge(in, p, q, r);
+	}
+
+	return 0;
+}
+
+/*
+ * Name:		merge
+ * Purpose:		merge input array
+ * Arguments:	an array in,
+				the starting, middle, and ending indices of the input array p, q, r
+ * Modifies:	TBD
+ * Output:		0 on success
+ */
+int merge(Mat in, int p, int q, int r)
+{
+	int n1, n2;
+	n1 = q - p + 1;
+	n2 = r - q;
 }
 
 void fakeHistorgram() {
